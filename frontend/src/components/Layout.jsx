@@ -68,14 +68,19 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '110px',
+                    fontSize: '92px',
                     fontWeight: 400,
-                    fontFamily: '"Satisfy", cursive',
-                    filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.6))',
+                    fontFamily: '"Pacifico", cursive',
+                    // Ultimate Neon Glow: Multi-layer bloom
+                    filter: `
+                      drop-shadow(0 0 10px rgba(124, 92, 255, 0.8)) 
+                      drop-shadow(0 0 20px rgba(124, 92, 255, 0.4)) 
+                      drop-shadow(0 0 40px rgba(58, 209, 255, 0.3))
+                    `,
                   }}
                   initial={{ 
                     stroke: 'url(#cursiveGradient)',
-                    strokeWidth: '1.2px',
+                    strokeWidth: '2px',
                     strokeDasharray: 2000, 
                     strokeDashoffset: 2000,
                     fill: 'rgba(124, 92, 255, 0)'
@@ -83,30 +88,63 @@ export default function Layout({ children }) {
                   animate={{ 
                     strokeDashoffset: 0,
                     fill: 'url(#cursiveGradient)',
-                    strokeWidth: ['1.2px', '0px'],
+                    strokeWidth: ['2px', '0px'],
                   }}
                   transition={{ 
-                    strokeDashoffset: { duration: 3.5, ease: 'easeInOut' },
-                    fill: { delay: 2.8, duration: 1.2 },
-                    strokeWidth: { delay: 3.5, duration: 0.5 }
+                    strokeDashoffset: { duration: 3, ease: 'easeInOut' },
+                    fill: { delay: 2.5, duration: 1 },
+                    strokeWidth: { delay: 3, duration: 0.5 }
+                  }}
+                >
+                  Developed By RAHUL
+                </motion.text>
+
+                {/* Pulsing Outer Glow Layer for extra depth */}
+                <motion.text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  style={{
+                    fontSize: '92px',
+                    fontWeight: 400,
+                    fontFamily: '"Pacifico", cursive',
+                    fill: 'url(#cursiveGradient)',
+                    filter: 'blur(15px) opacity(0.4)',
+                    zIndex: -1
+                  }}
+                  animate={{ 
+                    opacity: [0.2, 0.5, 0.2],
+                  }}
+                  transition={{ 
+                    delay: 3,
+                    duration: 2, 
+                    repeat: Infinity,
+                    ease: "easeInOut"
                   }}
                 >
                   Developed By RAHUL
                 </motion.text>
               </svg>
 
-              {/* Intense underline flare */}
+              {/* Advanced Neon Underline */}
               <motion.div
                 style={{
-                  height: '2.5px',
-                  background: 'linear-gradient(90deg, transparent, var(--accent2), transparent)',
+                  height: '3px',
+                  background: 'linear-gradient(90deg, transparent, var(--accent2), var(--accent), transparent)',
                   margin: '0 auto',
                   width: '0%',
-                  marginTop: '-25px',
-                  boxShadow: '0 0 30px var(--accent2), 0 0 50px rgba(58, 209, 255, 0.4)'
+                  marginTop: '-30px',
+                  boxShadow: '0 0 20px var(--accent2), 0 0 40px var(--accent)',
                 }}
-                animate={{ width: '65%' }}
-                transition={{ delay: 1, duration: 2 }}
+                animate={{ 
+                  width: '60%',
+                  opacity: [0.6, 1, 0.6]
+                }}
+                transition={{ 
+                  width: { delay: 1, duration: 2.5 },
+                  opacity: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                }}
               />
             </motion.div>
           </motion.div>
