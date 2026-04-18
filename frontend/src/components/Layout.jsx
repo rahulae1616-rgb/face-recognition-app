@@ -40,116 +40,100 @@ export default function Layout({ children }) {
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: 'rgba(7, 10, 19, 0.4)',
-              backdropFilter: 'blur(25px)',
-              WebkitBackdropFilter: 'blur(25px)',
+              backgroundColor: 'rgba(7, 10, 19, 0.7)',
+              backdropFilter: 'blur(30px)',
+              WebkitBackdropFilter: 'blur(30px)',
               pointerEvents: 'none',
               zIndex: 9999,
+              overflow: 'visible'
             }}
           >
-            <motion.div
-              style={{
-                position: 'relative',
-                textAlign: 'center'
-              }}
-            >
-              <svg viewBox="0 0 1000 200" style={{ width: '90vw', maxWidth: '800px' }}>
+            <div style={{ position: 'relative', textAlign: 'center', overflow: 'visible' }}>
+              <svg 
+                viewBox="0 0 1200 300" 
+                style={{ 
+                  width: '95vw', 
+                  maxWidth: '1000px', 
+                  overflow: 'visible',
+                  filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.6)) drop-shadow(0 0 40px rgba(58, 209, 255, 0.3))'
+                }}
+              >
                 <defs>
-                  <linearGradient id="cursiveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
                     <stop offset="0%" stopColor="#7c5cff" />
                     <stop offset="100%" stopColor="#3ad1ff" />
                   </linearGradient>
-                </defs>
-                
-                {/* Single Consolidated Text Element - No Borders */}
-                <motion.div
-                  style={{
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  <motion.text
-                    x="50%"
-                    y="50%"
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    style={{
-                      fontSize: '100px',
-                      fontWeight: 800,
-                      fontFamily: '"Pacifico", cursive',
-                      fill: 'url(#cursiveGradient)',
-                      // Ultimate Neon Glow
-                      filter: `
-                        drop-shadow(0 0 15px rgba(124, 92, 255, 0.9)) 
-                        drop-shadow(0 0 30px rgba(58, 209, 255, 0.5))
-                      `,
-                    }}
-                    initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                    animate={{ clipPath: 'inset(0 0% 0 0)' }}
-                    transition={{ 
-                      duration: 3, 
-                      ease: [0.45, 0, 0.55, 1] 
-                    }}
-                  >
-                    Developed By RAHUL
-                  </motion.text>
-                </motion.div>
-              </svg>
 
-              {/* Pulsing Outer Glow Layer */}
-              <motion.div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  zIndex: -1
-                }}
-              >
-                <motion.span
+                  {/* Mask that reveals the text as it "draws" */}
+                  <mask id="drawingMask">
+                    <motion.path
+                      d="M 50 150 L 1150 150"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="200"
+                      strokeDasharray="1100"
+                      initial={{ strokeDashoffset: 1100 }}
+                      animate={{ strokeDashoffset: 0 }}
+                      transition={{ duration: 3, ease: "easeInOut" }}
+                    />
+                  </mask>
+                </defs>
+
+                {/* Solid Cursive Text (Revealed by Mask) */}
+                <text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  mask="url(#drawingMask)"
                   style={{
-                    fontSize: '100px',
-                    fontWeight: 800,
+                    fontSize: '110px',
+                    fontWeight: 400,
                     fontFamily: '"Pacifico", cursive',
-                    background: 'url(#cursiveGradient)', // This won't work on span, using color
-                    color: 'var(--accent)',
-                    filter: 'blur(25px)',
-                  }}
-                  animate={{ 
-                    opacity: [0.1, 0.4, 0.1],
-                    scale: [0.98, 1.02, 0.98]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity,
-                    ease: "easeInOut"
+                    fill: 'url(#neonGradient)',
+                    filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.3))',
                   }}
                 >
                   Developed By RAHUL
-                </motion.span>
-              </motion.div>
+                </text>
 
-              {/* Advanced Neon Underline */}
+                {/* Pulsing Glow Aura Layer */}
+                <motion.text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  style={{
+                    fontSize: '110px',
+                    fontWeight: 400,
+                    fontFamily: '"Pacifico", cursive',
+                    fill: 'url(#neonGradient)',
+                    filter: 'blur(25px)',
+                    zIndex: -1,
+                  }}
+                  animate={{ opacity: [0.1, 0.4, 0.1] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  Developed By RAHUL
+                </motion.text>
+              </svg>
+
+              {/* Neon Underline with animated draw and glow */}
               <motion.div
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 1, duration: 2 }}
                 style={{
-                  height: '3px',
-                  background: 'linear-gradient(90deg, transparent, var(--accent2), var(--accent), transparent)',
+                  height: '4px',
+                  background: 'linear-gradient(90deg, transparent, #3ad1ff, #7c5cff, transparent)',
+                  width: '70%',
                   margin: '0 auto',
-                  width: '0%',
-                  marginTop: '-30px',
-                  boxShadow: '0 0 20px var(--accent2), 0 0 40px var(--accent)',
-                }}
-                animate={{ 
-                  width: '60%',
-                  opacity: [0.6, 1, 0.6]
-                }}
-                transition={{ 
-                  width: { delay: 1, duration: 2.5 },
-                  opacity: { repeat: Infinity, duration: 2, ease: "easeInOut" }
+                  marginTop: '-25px',
+                  boxShadow: '0 0 30px #7c5cff, 0 0 60px rgba(58, 209, 255, 0.5)',
+                  transformOrigin: 'center'
                 }}
               />
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
