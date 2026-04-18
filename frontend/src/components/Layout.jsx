@@ -70,11 +70,11 @@ export default function Layout({ children }) {
                   style={{
                     fontSize: '92px',
                     fontWeight: 700,
-                    fontFamily: '"Dancing Script", cursive',
+                    fontFamily: '"Pacifico", cursive',
                     fill: 'none',
                     stroke: 'url(#cursiveGradient)',
-                    strokeWidth: '1.5px',
-                    filter: 'drop-shadow(0 0 15px rgba(124, 92, 255, 0.5))',
+                    strokeWidth: '2px',
+                    filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.8))',
                   }}
                   initial={{ strokeDasharray: 2000, strokeDashoffset: 2000 }}
                   animate={{ 
@@ -97,9 +97,9 @@ export default function Layout({ children }) {
                   style={{
                     fontSize: '92px',
                     fontWeight: 700,
-                    fontFamily: '"Dancing Script", cursive',
+                    fontFamily: '"Pacifico", cursive',
                     fill: 'url(#cursiveGradient)',
-                    filter: 'drop-shadow(0 0 20px rgba(58, 209, 255, 0.4))',
+                    filter: 'drop-shadow(0 0 25px rgba(58, 209, 255, 0.6)) drop-shadow(0 0 45px rgba(124, 92, 255, 0.3))',
                   }}
                   initial={{ opacity: 0 }}
                   animate={{ 
@@ -115,17 +115,17 @@ export default function Layout({ children }) {
                 </motion.text>
               </svg>
 
-              {/* Subtle underline flare */}
+              {/* Intense underline flare */}
               <motion.div
                 style={{
-                  height: '2px',
+                  height: '2.5px',
                   background: 'linear-gradient(90deg, transparent, var(--accent2), transparent)',
                   margin: '0 auto',
                   width: '0%',
-                  marginTop: '-30px',
-                  boxShadow: '0 0 20px var(--accent2)'
+                  marginTop: '-25px',
+                  boxShadow: '0 0 30px var(--accent2), 0 0 50px rgba(58, 209, 255, 0.4)'
                 }}
-                animate={{ width: '60%' }}
+                animate={{ width: '65%' }}
                 transition={{ delay: 1, duration: 2 }}
               />
             </motion.div>
