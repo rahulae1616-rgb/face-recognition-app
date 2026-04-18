@@ -33,9 +33,8 @@ RUN npm install --production
 # Copy backend source
 COPY backend/ ./
 
-# Copy models (Assuming they are downloaded or we run the script)
-# If models are not in the repo, we run the script
-COPY backend/models/ ../models/
+# Download models during build since they are ignored by git
+RUN npm run download-models
 
 # Copy built frontend from previous stage
 COPY --from=frontend-builder /app/frontend/dist ../frontend/dist
