@@ -68,12 +68,12 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '110px',
-                    fontWeight: 400,
-                    fontFamily: '"Great Vibes", cursive',
+                    fontSize: '100px',
+                    fontWeight: 700,
+                    fontFamily: '"Kaushan Script", cursive',
                     fill: 'none',
                     stroke: 'url(#cursiveGradient)',
-                    strokeWidth: '1px',
+                    strokeWidth: '1.5px',
                     filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.8))',
                   }}
                   initial={{ strokeDasharray: 2000, strokeDashoffset: 2000 }}
@@ -95,9 +95,9 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '110px',
-                    fontWeight: 400,
-                    fontFamily: '"Great Vibes", cursive',
+                    fontSize: '100px',
+                    fontWeight: 700,
+                    fontFamily: '"Kaushan Script", cursive',
                     fill: 'url(#cursiveGradient)',
                     filter: 'drop-shadow(0 0 25px rgba(58, 209, 255, 0.6)) drop-shadow(0 0 45px rgba(124, 92, 255, 0.3))',
                   }}
