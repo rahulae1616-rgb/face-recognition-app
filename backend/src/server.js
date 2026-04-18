@@ -75,26 +75,43 @@ app.use((err, _req, res, _next) => {
 });
 
 async function main() {
+  console.log('🚀 Starting Face Recognition Server...');
   const modelsPath = path.join(__dirname, '..', 'models');
+  
   if (!fs.existsSync(modelsPath)) {
-    // eslint-disable-next-line no-console
-    console.error(
-      'Models folder missing. Run: npm run download-models\nExpected path:',
-      modelsPath
-    );
+    console.error('❌ Models folder missing! Please ensure npm run download-models was successful.');
     process.exit(1);
   }
 
-  const dbInfo = await connectDb(MONGODB_URI);
-  await ensureModelsLoaded();
+  // Start listening immediately so Render/Cloud hosts see the app as "Healthy"
+  const server = app.listen(PORT, async () => {
+    console.log(`✅ Server is live on port ${PORT}`);
+    
+    try {
+      console.log('📡 Connecting to Database...');
+      const dbInfo = await connectDb(MONGODB_URI);
+      console.log('🗄️ Database connected successfully.');
+      if (dbInfo?.usingMemory) {
+        console.log('⚠️ Using in-memory MongoDB (Data will NOT persist).');
+      }
 
-  app.listen(PORT, () => {
-    // eslint-disable-next-line no-console
-    console.log(`API listening on http://localhost:${PORT}`);
-    if (dbInfo?.usingMemory) {
-      // eslint-disable-next-line no-console
-      console.log('MongoDB not found. Using in-memory MongoDB for this session.');
+      console.log('🧠 Loading AI Models into memory...');
+      const startTime = Date.now();
+      await ensureModelsLoaded();
+      const endTime = Date.now();
+      console.log(`✨ AI Models loaded successfully in ${((endTime - startTime)/1000).toFixed(1)}s!`);
+      console.log('🚀 SYSTEM READY');
+    } catch (err) {
+      console.error('❌ Critical failure during background startup:');
+      console.error(err);
+      // We don't exit here so the server stays "Up" for debugging logs
     }
+  });
+
+  server.on('error', (e) => {
+    console.error('❌ Server failed to start:');
+    console.error(e);
+    process.exit(1);
   });
 }
 
