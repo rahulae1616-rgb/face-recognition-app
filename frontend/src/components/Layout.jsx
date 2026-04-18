@@ -68,14 +68,14 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '100px',
-                    fontWeight: 700,
-                    fontFamily: '"Kaushan Script", cursive',
-                    filter: 'drop-shadow(0 0 25px rgba(124, 92, 255, 0.6))',
+                    fontSize: '140px', // Adjusted for thin signature font
+                    fontWeight: 400,
+                    fontFamily: '"Mr De Haviland", cursive',
+                    filter: 'drop-shadow(0 0 15px rgba(124, 92, 255, 0.4))',
                   }}
                   initial={{ 
                     stroke: 'url(#cursiveGradient)',
-                    strokeWidth: '1.5px',
+                    strokeWidth: '0.8px',
                     strokeDasharray: 2000, 
                     strokeDashoffset: 2000,
                     fill: 'rgba(124, 92, 255, 0)'
@@ -83,12 +83,12 @@ export default function Layout({ children }) {
                   animate={{ 
                     strokeDashoffset: 0,
                     fill: 'url(#cursiveGradient)',
-                    strokeWidth: ['1.5px', '0px'], // Fade out the border as it fills
+                    strokeWidth: ['0.8px', '0px'],
                   }}
                   transition={{ 
-                    strokeDashoffset: { duration: 3, ease: 'easeInOut' },
-                    fill: { delay: 2.2, duration: 1.2 },
-                    strokeWidth: { delay: 3, duration: 0.5 }
+                    strokeDashoffset: { duration: 3.5, ease: 'easeInOut' },
+                    fill: { delay: 2.8, duration: 1.2 },
+                    strokeWidth: { delay: 3.8, duration: 0.5 }
                   }}
                 >
                   Developed By RAHUL
