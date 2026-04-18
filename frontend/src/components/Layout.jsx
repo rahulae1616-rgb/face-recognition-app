@@ -61,7 +61,7 @@ export default function Layout({ children }) {
                   </linearGradient>
                 </defs>
                 
-                {/* Outline Drawing Stage */}
+                {/* Single Consolidated Text Element */}
                 <motion.text
                   x="50%"
                   y="50%"
@@ -71,44 +71,24 @@ export default function Layout({ children }) {
                     fontSize: '100px',
                     fontWeight: 700,
                     fontFamily: '"Kaushan Script", cursive',
-                    fill: 'none',
+                    filter: 'drop-shadow(0 0 25px rgba(124, 92, 255, 0.6))',
+                  }}
+                  initial={{ 
                     stroke: 'url(#cursiveGradient)',
                     strokeWidth: '1.5px',
-                    filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.8))',
+                    strokeDasharray: 2000, 
+                    strokeDashoffset: 2000,
+                    fill: 'rgba(124, 92, 255, 0)'
                   }}
-                  initial={{ strokeDasharray: 2000, strokeDashoffset: 2000 }}
                   animate={{ 
                     strokeDashoffset: 0,
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    ease: "easeInOut"
-                  }}
-                >
-                  Developed By RAHUL
-                </motion.text>
-
-                {/* Fill Stage */}
-                <motion.text
-                  x="50%"
-                  y="50%"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  style={{
-                    fontSize: '100px',
-                    fontWeight: 700,
-                    fontFamily: '"Kaushan Script", cursive',
                     fill: 'url(#cursiveGradient)',
-                    filter: 'drop-shadow(0 0 25px rgba(58, 209, 255, 0.6)) drop-shadow(0 0 45px rgba(124, 92, 255, 0.3))',
-                  }}
-                  initial={{ opacity: 0 }}
-                  animate={{ 
-                    opacity: 1
+                    strokeWidth: ['1.5px', '0px'], // Fade out the border as it fills
                   }}
                   transition={{ 
-                    delay: 2.2,
-                    duration: 1.2,
-                    ease: "easeOut"
+                    strokeDashoffset: { duration: 3, ease: 'easeInOut' },
+                    fill: { delay: 2.2, duration: 1.2 },
+                    strokeWidth: { delay: 3, duration: 0.5 }
                   }}
                 >
                   Developed By RAHUL
