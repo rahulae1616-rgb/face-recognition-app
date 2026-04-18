@@ -70,17 +70,17 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '110px',
+                    fontSize: '130px',
                     fontWeight: 400,
-                    fontFamily: '"Pacifico", cursive',
+                    fontFamily: '"Pinyon Script", cursive',
                     fill: 'none',
                     stroke: 'url(#neonGradient)',
-                    strokeWidth: '1.5px',
-                    filter: 'drop-shadow(0 0 15px #7c5cff) drop-shadow(0 0 30px #3ad1ff)',
+                    strokeWidth: '1px',
+                    filter: 'drop-shadow(0 0 10px #7c5cff) drop-shadow(0 0 20px #3ad1ff)',
                   }}
                   initial={{ strokeDasharray: 2000, strokeDashoffset: 2000 }}
                   animate={{ strokeDashoffset: 0 }}
-                  transition={{ duration: 3, ease: "easeInOut" }}
+                  transition={{ duration: 3.5, ease: "easeInOut" }}
                 >
                   Developed By RAHUL
                 </motion.text>
@@ -92,16 +92,16 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '110px',
+                    fontSize: '130px',
                     fontWeight: 400,
-                    fontFamily: '"Pacifico", cursive',
+                    fontFamily: '"Pinyon Script", cursive',
                     fill: 'url(#neonGradient)',
-                    filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.5))',
+                    filter: 'drop-shadow(0 0 15px rgba(124, 92, 255, 0.4))',
                     pointerEvents: 'none'
                   }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 2.5, duration: 1.2 }}
+                  transition={{ delay: 3, duration: 1.2 }}
                 >
                   Developed By RAHUL
                 </motion.text>
@@ -113,15 +113,15 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '110px',
+                    fontSize: '130px',
                     fontWeight: 400,
-                    fontFamily: '"Pacifico", cursive',
+                    fontFamily: '"Pinyon Script", cursive',
                     fill: 'url(#neonGradient)',
-                    filter: 'blur(30px) opacity(0.3)',
+                    filter: 'blur(30px) opacity(0.2)',
                     zIndex: -1,
                   }}
-                  animate={{ opacity: [0.1, 0.4, 0.1] }}
-                  transition={{ delay: 3, duration: 3, repeat: Infinity }}
+                  animate={{ opacity: [0.1, 0.3, 0.1] }}
+                  transition={{ delay: 3.5, duration: 3, repeat: Infinity }}
                 >
                   Developed By RAHUL
                 </motion.text>
