@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionTemplate } from 'framer-motion';
 
 export default function Layout({ children }) {
   const { scrollYProgress } = useScroll();
@@ -6,8 +6,10 @@ export default function Layout({ children }) {
   // Transform scroll progress into various "liquid" properties
   const xTranslate = useTransform(scrollYProgress, [0, 1], [0, -150]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-  const blur = useTransform(scrollYProgress, [0.7, 1], [0, 20]);
-  const turbulenceScale = useTransform(scrollYProgress, [0.5, 1], [0, 60]);
+  const blurValue = useTransform(scrollYProgress, [0.7, 1], [0, 12]);
+  
+  // Create a template for the filter string to keep it reactive
+  const filterTemplate = useMotionTemplate`blur(${blurValue}px) url(#liquid-filter)`;
 
   return (
     <div style={{ minHeight: '120vh', padding: 'clamp(16px, 4vw, 40px)', paddingBottom: '100px' }}>
@@ -58,15 +60,7 @@ export default function Layout({ children }) {
           textTransform: 'uppercase',
           letterSpacing: '0.3em',
           fontFamily: 'Outfit, sans-serif',
-          // Applying the liquid filter and blur
-          filter: `blur(${blur.get()}px) url(#liquid-filter)`,
-        }}
-        // Using motion to tie the scale of displacement to scroll
-        animate={{
-          filter: [
-            `blur(0px) url(#liquid-filter)`,
-            `blur(${blur.get()}px) url(#liquid-filter)`
-          ]
+          filter: filterTemplate,
         }}
       >
         Developed By RAHUL
