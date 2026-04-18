@@ -40,12 +40,11 @@ export default function Layout({ children }) {
               flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
-              backgroundColor: 'rgba(7, 10, 19, 0.7)',
+              backgroundColor: 'rgba(7, 10, 19, 0.75)',
               backdropFilter: 'blur(30px)',
               WebkitBackdropFilter: 'blur(30px)',
               pointerEvents: 'none',
               zIndex: 9999,
-              overflow: 'visible'
             }}
           >
             <div style={{ position: 'relative', textAlign: 'center', overflow: 'visible' }}>
@@ -55,7 +54,6 @@ export default function Layout({ children }) {
                   width: '95vw', 
                   maxWidth: '1000px', 
                   overflow: 'visible',
-                  filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.6)) drop-shadow(0 0 40px rgba(58, 209, 255, 0.3))'
                 }}
               >
                 <defs>
@@ -63,41 +61,31 @@ export default function Layout({ children }) {
                     <stop offset="0%" stopColor="#7c5cff" />
                     <stop offset="100%" stopColor="#3ad1ff" />
                   </linearGradient>
-
-                  {/* Mask that reveals the text as it "draws" */}
-                  <mask id="drawingMask">
-                    <motion.path
-                      d="M 50 150 L 1150 150"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth="200"
-                      strokeDasharray="1100"
-                      initial={{ strokeDashoffset: 1100 }}
-                      animate={{ strokeDashoffset: 0 }}
-                      transition={{ duration: 3, ease: "easeInOut" }}
-                    />
-                  </mask>
                 </defs>
 
-                {/* Solid Cursive Text (Revealed by Mask) */}
-                <text
+                {/* The "Drawing" Layer - Stroke & Fill match to remove 'border' look */}
+                <motion.text
                   x="50%"
                   y="50%"
                   textAnchor="middle"
                   dominantBaseline="middle"
-                  mask="url(#drawingMask)"
                   style={{
                     fontSize: '110px',
                     fontWeight: 400,
                     fontFamily: '"Pacifico", cursive',
-                    fill: 'url(#neonGradient)',
-                    filter: 'drop-shadow(0 0 15px rgba(255, 255, 255, 0.3))',
+                    fill: 'none',
+                    stroke: 'url(#neonGradient)',
+                    strokeWidth: '1.5px',
+                    filter: 'drop-shadow(0 0 15px #7c5cff) drop-shadow(0 0 30px #3ad1ff)',
                   }}
+                  initial={{ strokeDasharray: 2000, strokeDashoffset: 2000 }}
+                  animate={{ strokeDashoffset: 0 }}
+                  transition={{ duration: 3, ease: "easeInOut" }}
                 >
                   Developed By RAHUL
-                </text>
+                </motion.text>
 
-                {/* Pulsing Glow Aura Layer */}
+                {/* The "Fill" Layer - Fades in to complete the solid look */}
                 <motion.text
                   x="50%"
                   y="50%"
@@ -108,28 +96,49 @@ export default function Layout({ children }) {
                     fontWeight: 400,
                     fontFamily: '"Pacifico", cursive',
                     fill: 'url(#neonGradient)',
-                    filter: 'blur(25px)',
+                    filter: 'drop-shadow(0 0 20px rgba(124, 92, 255, 0.5))',
+                    pointerEvents: 'none'
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2.5, duration: 1.2 }}
+                >
+                  Developed By RAHUL
+                </motion.text>
+
+                {/* Pulsing Aura */}
+                <motion.text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  style={{
+                    fontSize: '110px',
+                    fontWeight: 400,
+                    fontFamily: '"Pacifico", cursive',
+                    fill: 'url(#neonGradient)',
+                    filter: 'blur(30px) opacity(0.3)',
                     zIndex: -1,
                   }}
                   animate={{ opacity: [0.1, 0.4, 0.1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
+                  transition={{ delay: 3, duration: 3, repeat: Infinity }}
                 >
                   Developed By RAHUL
                 </motion.text>
               </svg>
 
-              {/* Neon Underline with animated draw and glow */}
+              {/* Animated Underline */}
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ delay: 1, duration: 2 }}
+                transition={{ delay: 1, duration: 2.5 }}
                 style={{
-                  height: '4px',
+                  height: '3px',
                   background: 'linear-gradient(90deg, transparent, #3ad1ff, #7c5cff, transparent)',
-                  width: '70%',
+                  width: '65%',
                   margin: '0 auto',
-                  marginTop: '-25px',
-                  boxShadow: '0 0 30px #7c5cff, 0 0 60px rgba(58, 209, 255, 0.5)',
+                  marginTop: '-30px',
+                  boxShadow: '0 0 30px #7c5cff',
                   transformOrigin: 'center'
                 }}
               />
