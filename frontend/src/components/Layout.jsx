@@ -22,7 +22,7 @@ export default function Layout({ children }) {
         {children}
       </motion.div>
 
-      {/* Developed By RAHUL - Drawing Animation */}
+      {/* Developed By RAHUL - Cursive Drawing Animation */}
       <AnimatePresence>
         {showCredit && (
           <motion.div
@@ -30,55 +30,105 @@ export default function Layout({ children }) {
             animate={{ opacity: 1 }}
             exit={{ 
               opacity: 0, 
-              scale: 1.2, 
-              filter: 'blur(15px) brightness(2)',
-              transition: { duration: 1, ease: 'easeInOut' } 
+              filter: 'blur(30px) brightness(1.5)',
+              transition: { duration: 1.2, ease: 'easeInOut' } 
             }}
             style={{
               position: 'fixed',
-              bottom: '40px',
-              left: '0',
-              right: '0',
+              inset: 0,
               display: 'flex',
+              flexDirection: 'column',
               justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'rgba(7, 10, 19, 0.4)',
+              backdropFilter: 'blur(25px)',
+              WebkitBackdropFilter: 'blur(25px)',
               pointerEvents: 'none',
-              zIndex: 1000,
+              zIndex: 9999,
             }}
           >
-            <svg viewBox="0 0 800 100" style={{ width: '80%', maxWidth: '600px' }}>
-              <defs>
-                <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="var(--accent)" />
-                  <stop offset="100%" stopColor="var(--accent2)" />
-                </linearGradient>
-              </defs>
-              <motion.text
-                x="50%"
-                y="50%"
-                textAnchor="middle"
-                dominantBaseline="middle"
+            <motion.div
+              style={{
+                position: 'relative',
+                textAlign: 'center'
+              }}
+            >
+              <svg viewBox="0 0 1000 200" style={{ width: '90vw', maxWidth: '800px' }}>
+                <defs>
+                  <linearGradient id="cursiveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#7c5cff" />
+                    <stop offset="100%" stopColor="#3ad1ff" />
+                  </linearGradient>
+                </defs>
+                
+                {/* Outline Drawing Stage */}
+                <motion.text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  style={{
+                    fontSize: '92px',
+                    fontWeight: 700,
+                    fontFamily: '"Dancing Script", cursive',
+                    fill: 'none',
+                    stroke: 'url(#cursiveGradient)',
+                    strokeWidth: '1.5px',
+                    filter: 'drop-shadow(0 0 15px rgba(124, 92, 255, 0.5))',
+                  }}
+                  initial={{ strokeDasharray: 2000, strokeDashoffset: 2000 }}
+                  animate={{ 
+                    strokeDashoffset: 0,
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    ease: "easeInOut"
+                  }}
+                >
+                  Developed By RAHUL
+                </motion.text>
+
+                {/* Fill Stage */}
+                <motion.text
+                  x="50%"
+                  y="50%"
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  style={{
+                    fontSize: '92px',
+                    fontWeight: 700,
+                    fontFamily: '"Dancing Script", cursive',
+                    fill: 'url(#cursiveGradient)',
+                    filter: 'drop-shadow(0 0 20px rgba(58, 209, 255, 0.4))',
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: 1
+                  }}
+                  transition={{ 
+                    delay: 2.2,
+                    duration: 1.2,
+                    ease: "easeOut"
+                  }}
+                >
+                  Developed By RAHUL
+                </motion.text>
+              </svg>
+
+              {/* Subtle underline flare */}
+              <motion.div
                 style={{
-                  fontSize: '48px',
-                  fontWeight: 800,
-                  fontFamily: 'Outfit, sans-serif',
-                  letterSpacing: '0.15em',
-                  fill: 'transparent',
-                  stroke: 'url(#textGradient)',
-                  strokeWidth: '1px',
+                  height: '2px',
+                  background: 'linear-gradient(90deg, transparent, var(--accent2), transparent)',
+                  margin: '0 auto',
+                  width: '0%',
+                  marginTop: '-30px',
+                  boxShadow: '0 0 20px var(--accent2)'
                 }}
-                initial={{ strokeDasharray: 1000, strokeDashoffset: 1000 }}
-                animate={{ 
-                  strokeDashoffset: 0,
-                  fill: ['rgba(124, 92, 255, 0)', 'rgba(124, 92, 255, 1)'],
-                }}
-                transition={{ 
-                  strokeDashoffset: { duration: 3, ease: 'easeInOut' },
-                  fill: { delay: 2.5, duration: 1 }
-                }}
-              >
-                Developed By RAHUL
-              </motion.text>
-            </svg>
+                animate={{ width: '60%' }}
+                transition={{ delay: 1, duration: 2 }}
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
