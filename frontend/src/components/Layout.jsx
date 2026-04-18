@@ -63,16 +63,17 @@ export default function Layout({ children }) {
                   </linearGradient>
                 </defs>
 
-                {/* The "Drawing" Layer - Stroke & Fill match to remove 'border' look */}
+                {/* The "Drawing" Layer - Times New Roman Italic */}
                 <motion.text
                   x="50%"
                   y="50%"
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '130px',
-                    fontWeight: 400,
-                    fontFamily: '"Pinyon Script", cursive',
+                    fontSize: '100px',
+                    fontWeight: 700,
+                    fontFamily: '"Times New Roman", Times, serif',
+                    fontStyle: 'italic',
                     fill: 'none',
                     stroke: 'url(#neonGradient)',
                     strokeWidth: '1px',
@@ -85,16 +86,17 @@ export default function Layout({ children }) {
                   Developed By RAHUL
                 </motion.text>
 
-                {/* The "Fill" Layer - Fades in to complete the solid look */}
+                {/* The "Fill" Layer */}
                 <motion.text
                   x="50%"
                   y="50%"
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '130px',
-                    fontWeight: 400,
-                    fontFamily: '"Pinyon Script", cursive',
+                    fontSize: '100px',
+                    fontWeight: 700,
+                    fontFamily: '"Times New Roman", Times, serif',
+                    fontStyle: 'italic',
                     fill: 'url(#neonGradient)',
                     filter: 'drop-shadow(0 0 15px rgba(124, 92, 255, 0.4))',
                     pointerEvents: 'none'
@@ -113,9 +115,10 @@ export default function Layout({ children }) {
                   textAnchor="middle"
                   dominantBaseline="middle"
                   style={{
-                    fontSize: '130px',
-                    fontWeight: 400,
-                    fontFamily: '"Pinyon Script", cursive',
+                    fontSize: '100px',
+                    fontWeight: 700,
+                    fontFamily: '"Times New Roman", Times, serif',
+                    fontStyle: 'italic',
                     fill: 'url(#neonGradient)',
                     filter: 'blur(30px) opacity(0.2)',
                     zIndex: -1,
