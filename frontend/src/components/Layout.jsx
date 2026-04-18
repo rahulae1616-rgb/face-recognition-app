@@ -61,71 +61,74 @@ export default function Layout({ children }) {
                   </linearGradient>
                 </defs>
                 
-                {/* Single Consolidated Text Element */}
-                <motion.text
-                  x="50%"
-                  y="50%"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
+                {/* Single Consolidated Text Element - No Borders */}
+                <motion.div
                   style={{
-                    fontSize: '92px',
-                    fontWeight: 400,
-                    fontFamily: '"Pacifico", cursive',
-                    // Ultimate Neon Glow: Multi-layer bloom
-                    filter: `
-                      drop-shadow(0 0 10px rgba(124, 92, 255, 0.8)) 
-                      drop-shadow(0 0 20px rgba(124, 92, 255, 0.4)) 
-                      drop-shadow(0 0 40px rgba(58, 209, 255, 0.3))
-                    `,
-                  }}
-                  initial={{ 
-                    stroke: 'url(#cursiveGradient)',
-                    strokeWidth: '2px',
-                    strokeDasharray: 2000, 
-                    strokeDashoffset: 2000,
-                    fill: 'rgba(124, 92, 255, 0)'
-                  }}
-                  animate={{ 
-                    strokeDashoffset: 0,
-                    fill: 'url(#cursiveGradient)',
-                    strokeWidth: ['2px', '0px'],
-                  }}
-                  transition={{ 
-                    strokeDashoffset: { duration: 3, ease: 'easeInOut' },
-                    fill: { delay: 2.5, duration: 1 },
-                    strokeWidth: { delay: 3, duration: 0.5 }
+                    position: 'relative',
+                    overflow: 'hidden',
                   }}
                 >
-                  Developed By RAHUL
-                </motion.text>
+                  <motion.text
+                    x="50%"
+                    y="50%"
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    style={{
+                      fontSize: '100px',
+                      fontWeight: 800,
+                      fontFamily: '"Pacifico", cursive',
+                      fill: 'url(#cursiveGradient)',
+                      // Ultimate Neon Glow
+                      filter: `
+                        drop-shadow(0 0 15px rgba(124, 92, 255, 0.9)) 
+                        drop-shadow(0 0 30px rgba(58, 209, 255, 0.5))
+                      `,
+                    }}
+                    initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                    animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                    transition={{ 
+                      duration: 3, 
+                      ease: [0.45, 0, 0.55, 1] 
+                    }}
+                  >
+                    Developed By RAHUL
+                  </motion.text>
+                </motion.div>
+              </svg>
 
-                {/* Pulsing Outer Glow Layer for extra depth */}
-                <motion.text
-                  x="50%"
-                  y="50%"
-                  textAnchor="middle"
-                  dominantBaseline="middle"
+              {/* Pulsing Outer Glow Layer */}
+              <motion.div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  zIndex: -1
+                }}
+              >
+                <motion.span
                   style={{
-                    fontSize: '92px',
-                    fontWeight: 400,
+                    fontSize: '100px',
+                    fontWeight: 800,
                     fontFamily: '"Pacifico", cursive',
-                    fill: 'url(#cursiveGradient)',
-                    filter: 'blur(15px) opacity(0.4)',
-                    zIndex: -1
+                    background: 'url(#cursiveGradient)', // This won't work on span, using color
+                    color: 'var(--accent)',
+                    filter: 'blur(25px)',
                   }}
                   animate={{ 
-                    opacity: [0.2, 0.5, 0.2],
+                    opacity: [0.1, 0.4, 0.1],
+                    scale: [0.98, 1.02, 0.98]
                   }}
                   transition={{ 
-                    delay: 3,
-                    duration: 2, 
+                    duration: 3, 
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
                 >
                   Developed By RAHUL
-                </motion.text>
-              </svg>
+                </motion.span>
+              </motion.div>
 
               {/* Advanced Neon Underline */}
               <motion.div
