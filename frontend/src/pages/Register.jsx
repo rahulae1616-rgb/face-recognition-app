@@ -111,6 +111,16 @@ export default function Register() {
           Register with Gmail, pick your country, and capture a clear selfie. We extract a numeric face embedding and
           store it with your profile for recognition.
         </p>
+        <div style={{ marginTop: 24, display: 'flex', justifyContent: 'center', gap: 12 }}>
+          <button
+            type="button"
+            className="btn btn-ghost"
+            onClick={() => navigate('/recognize')}
+            style={{ border: '1px solid rgba(255,255,255,0.1)' }}
+          >
+            OLD USER? <span style={{ fontWeight: 700, color: 'var(--accent)', marginLeft: 6 }}>REGISTERED</span>
+          </button>
+        </div>
       </motion.header>
 
       <div

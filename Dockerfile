@@ -39,12 +39,11 @@ RUN npm run download-models
 # Copy built frontend from previous stage
 COPY --from=frontend-builder /app/frontend/dist ../frontend/dist
 
-# Expose the API port
-EXPOSE 4000
-
 # Set environment variables
 ENV NODE_ENV=production
-ENV PORT=4000
 
-# Start the server
+# Memory limit for Render Free Tier (512MB)
+ENV NODE_OPTIONS="--max-old-space-size=450"
+
+# Start the server (respects process.env.PORT provided by Render)
 CMD ["node", "src/server.js"]
