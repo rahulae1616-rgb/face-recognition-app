@@ -32,15 +32,6 @@
       </stop>
     </linearGradient>
 
-    <!-- Subtle Sleek Text Glow Filter -->
-    <filter id="frGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="1.5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
     <pattern id="frGrid" width="20" height="20" patternUnits="userSpaceOnUse">
       <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(0, 255, 136, 0.05)" stroke-width="1"/>
     </pattern>
@@ -79,8 +70,8 @@
     </circle>
   </g>
 
-  <!-- Main Title -->
-  <text x="400" y="70" text-anchor="middle" fill="url(#frTextGrad)" font-family="'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="900" letter-spacing="3" filter="url(#frGlow)">
+  <!-- Main Title (Glow Removed for 100% Crisp Text) -->
+  <text x="400" y="70" text-anchor="middle" fill="url(#frTextGrad)" font-family="'Segoe UI', Roboto, sans-serif" font-size="42" font-weight="900" letter-spacing="3">
     🤖 FACE RECOGNITION 🤖
   </text>
 
